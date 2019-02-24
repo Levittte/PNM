@@ -1,0 +1,1 @@
+double f(const double x);
