@@ -6,7 +6,7 @@ double mid_rect(const double a, const double b, const size_t n){
     const double h = (b-a)/n; 
 
     #pragma omp parallel for reduction (+:result)
-    for(size_t i=0; i < n; i++){
+    for(size_t i=0; i < n -1; i++){
 
         result += f(a + h * (i + 0.5)); 
     }
@@ -19,9 +19,9 @@ double left_rect(const double a, const double b, const size_t n){
     const double h = (b-a)/n; 
 
     #pragma omp parallel for reduction (+:result)
-    for(size_t i=0; i < n; i++){
+    for(size_t i=0; i < n - 1; i++){
 
-        result += f(a + h * (i-1)); 
+        result += f(a + h * i); 
     }
 
     return result*h;
@@ -32,7 +32,7 @@ double right_rect(const double a, const double b, const size_t n){
     const double h = (b-a)/n; 
 
     #pragma omp parallel for reduction (+:result)
-    for(size_t i=0; i < n; i++){
+    for(size_t i=1; i < n; i++){
 
         result += f(a + h * i); 
     }
@@ -57,11 +57,10 @@ double trapez(const double a, const double b, const size_t n){
     double result = 0;
     const double h = (b - a) / n;
 
-    result +=f(a);
-    result +=f(b);
+    result =(f(a)+f(b))/2;
 
     #pragma omp parallel for reduction (+:result)
-    for(size_t i = 0; i < n; i++) {
+    for(size_t i = 1; i < n - 1; i++) {
         result+=f(a+i*h);
     }
 
