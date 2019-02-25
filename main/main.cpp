@@ -24,6 +24,8 @@ int main(){
     std::cout<<"TRAPEZ:"<<res<<std::endl;
     res = simpson(a, b,200);
     std::cout<<"SIMPSON:"<<res<<std::endl;
+    // res = monte_carlo(a, b,10000);
+    // std::cout<<"MONTE CARLO:"<<res<<std::endl;
     auto runTime= std::chrono::steady_clock::now(); 
     auto runtimeDuration = std::chrono::duration_cast<std::chrono::duration<double>>(runTime - startTime);
     std::cout<<"RUNTIME:"<<runtimeDuration.count()<<std::endl;

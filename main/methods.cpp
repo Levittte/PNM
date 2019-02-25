@@ -41,7 +41,16 @@ double right_rect(const double a, const double b, const size_t n){
 }
 
 double simpson(const double a, const double b, const size_t n){
+   
+    double result = 0;
+    const double h = (b-a)/(2*n);
 
+    #pragma omp parallel for reduction (+:result)
+    for(size_t i=1;i<=(2*n-1);i++)
+    {
+        result+=(3+pow(-1,i+1))*f(a+i*h);
+    }
+    return h/3*(f(a)+f(b)+result);
 }
 
 double trapez(const double a, const double b, const size_t n){
@@ -57,4 +66,9 @@ double trapez(const double a, const double b, const size_t n){
     }
 
     return result*h;
+}
+
+double monte_carlo(const double a, const double b, const size_t n){
+  
+    return 0.0;
 }
