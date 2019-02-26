@@ -66,10 +66,22 @@ double trapez(const double a, const double b, const size_t n){
     return result*h;
 }
 double newton_cotes(const double a, const double b, const size_t n) {
+    double result = 0;
+    double result2 = 0;
+    double step = (b-a)/n;
 
+    #pragma omp parallel for reduction(+:result,result2)
+    for (size_t i = 1; i < n; i++){ 
+        if(i%3==0){
+            result += f(a + i*step); 
+        }
+        else {
+           result2 += f(a + i*step);  
+        }
 
+    }
+    return 3./8. * (f(a) + f(b) + 2*result+3*result2) * step;
 
-    return 0.0
 }
 double monte_carlo(const double a, const double b, const size_t n){
   
