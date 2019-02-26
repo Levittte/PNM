@@ -41,7 +41,6 @@ double right_rect(const double a, const double b, const size_t n){
 }
 
 double simpson(const double a, const double b, const size_t n){
-   
     double result = 0;
     const double h = (b-a)/(2*n);
 
@@ -66,7 +65,12 @@ double trapez(const double a, const double b, const size_t n){
 
     return result*h;
 }
+double newton_cotes(const double a, const double b, const size_t n) {
 
+
+
+    return 0.0
+}
 double monte_carlo(const double a, const double b, const size_t n){
   
     return 0.0;

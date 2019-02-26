@@ -11,33 +11,22 @@ int main(){
 
     const double a = 0.3;
     const double b = 0.8;
-    double res = 0;
-    double res2 = 0;
-    size_t n = 10000;
-    double res3 = 0;
-    double res4 = 0;
-    auto startTime = std::chrono::steady_clock::now();
+    const size_t n = 10000;
 
-    res = mid_rect(a, b,n);
-    res2 = mid_rect(a, b,2*n);
-    std::cout<<"MID:"<<res<<" RUNGE:"<<fabs(res2-res)<<std::endl;
-    res = left_rect(a, b,n);
-    res2 = left_rect(a, b,2*n);
-    std::cout<<"LEFT:"<<res<<" RUNGE:"<<fabs(res2-res)<<std::endl;
-    res = right_rect(a, b,n);
-    res2 = right_rect(a, b,2*n);
-    std::cout<<"RIGHT:"<<res<<" RUNGE:"<<fabs(res2-res)<<std::endl;
-    res = trapez(a, b,n);
-    res2 = trapez(a, b,2*n);
-    res3 = right_rect(a,b,n);
-    res4 = left_rect(a,b,n);
-    std::cout<<"TRAPEZ:"<<res<<" RUNGE:"<<fabs(res2-res)<<" HALFSUM"<<(res3+res4)/2<<std::endl;
-    res = simpson(a, b,n);
-    res2 = simpson(a, b,2*n);
-    std::cout<<"SIMPSON:"<<res<<" RUNGE:"<<fabs(res2-res)<<std::endl;
+
+    // auto startTime = std::chrono::steady_clock::now();
+
+  
+    std::cout<<"MID: "<<mid_rect(a, b,n)<<" RUNGE: "<<fabs(mid_rect(a, b,n)-mid_rect(a, b,2*n))<<std::endl;
+    std::cout<<"LEFT: "<<left_rect(a, b,n)<<" RUNGE: "<<fabs(left_rect(a, b,n)-left_rect(a, b,2*n))<<std::endl;
+    std::cout<<"RIGHT: "<<right_rect(a, b,n)<<" RUNGE: "<<fabs(right_rect(a, b,n)-right_rect(a, b,2*n))<<std::endl;
+    std::cout<<"TRAPEZ: "<<trapez(a, b,n)<<" RUNGE: "<<fabs(trapez(a, b,n)-trapez(a, b,2*n))<<" HALFSUM: "<<(left_rect(a,b,n)+right_rect(a,b,n))/2<<std::endl;
+    std::cout<<"SIMPSON: "<<simpson(a, b,n)<<" RUNGE: "<<fabs(simpson(a, b,n)-simpson(a, b,2*n))<<std::endl;
+
+
     // res = monte_carlo(a, b,10000);
     // std::cout<<"MONTE CARLO:"<<res<<std::endl;
-    auto runTime= std::chrono::steady_clock::now(); 
+    // auto runTime= std::chrono::steady_clock::now(); 
     // auto runtimeDuration = std::chrono::duration_cast<std::chrono::duration<double>>(runTime - startTime);
     // std::cout<<"RUNTIME:"<<runtimeDuration.count()<<std::endl;
     return 0;
