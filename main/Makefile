@@ -17,14 +17,12 @@ endif
 
 default: all
 
-all: clean main.o matrix.o function.o methods.o
-	$(COMPILER) $(FLAGS) main.o matrix.o function.o methods.o -o main
+all: clean main.o function.o methods.o
+	$(COMPILER) $(FLAGS) main.o function.o methods.o -o main
 
 main.o: 
 	$(COMPILER) -c $(FLAGS) main.cpp -o main.o
 
-matrix.o:
-	$(COMPILER) -c $(FLAGS) ./matrix.cpp -o matrix.o
 
 function.o:
 	$(COMPILER) -c $(FLAGS) ./function.cpp -o function.o
